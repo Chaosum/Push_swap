@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 20:25:48 by mservage          #+#    #+#             */
-/*   Updated: 2021/05/26 08:15:22 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/10 15:26:20 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,17 @@
 
 typedef struct s_stack
 {
-	int value;
-	struct s_stack *next;
+	int				value;
+	struct s_stack	*next;
 }				t_stack;
+
+typedef struct s_var
+{
+	int	i;
+	int	j;
+	int	median;
+	int	max;
+	int	min;
+}				t_var;
 
 #endif

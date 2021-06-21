@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/05/26 08:17:23 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/21 16:27:56 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 t_stack	*init_stack_a(int ac, char **av)
 {
-	int i;
-	t_stack *stack_a;
-	i = 0;
+	int		i;
+	t_stack	*stack_a;
+	t_stack	*temp;
 
-	while (i <= ac)
+	i = 1;
+	stack_a = NULL;
+	while (i < ac)
 	{
-		stack_a = ft_calloc(1, sizeof(t_stack));
-		stack_a->value = ft_atoi(av[i]);
-		if (stack_a->value <= 0)
-		{
-			/* error */
-			return (NULL);
-		}
-		stack_a = stack_a->next;
+		temp = ft_calloc(1, sizeof(t_stack));
+		temp->value = ft_atoi(av[i]);
+		ft_lst_stack_add_back(&stack_a, temp);
 		i++;
 	}
 	return (stack_a);
@@ -35,25 +32,30 @@ t_stack	*init_stack_a(int ac, char **av)
 
 int	check_doublon(t_stack *stack_a, int ac)
 {
-	int i;
-	int current_check;
-	int value;
+	int		i;
+	int		current_check;
+	int		value;
+	t_stack	*temp;
+	t_stack	*temp2;
 
-	current_check = 0;
+	temp2 = stack_a;
+	current_check = 1;
 	while (current_check < ac)
 	{
-		i = 0;
-		value = stack_a->value;
+		temp = stack_a;
+		i = 1;
+		value = temp2->value;
 		while (i < ac)
 		{
-			if (value == stack_a->value && i != current_check)
+			if (value == temp->value && i != current_check)
 			{
-				/* error */
+				printf("/* error */ 2\n");
 				return (0);
 			}
+			temp = temp->next;
 			i++;
 		}
-		stack_a = stack_a->next;
+		temp2 = temp2->next;
 		current_check++;
 	}
 	return (1);
@@ -63,16 +65,16 @@ int	check_arg_num(int ac, char **av)
 {
 	int	i;
 	int	j;
-	
+
 	i = 1;
 	while (i < ac)
 	{
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit((int)av[i][j]))
+			if (!ft_isdigit((int)av[i][j]) && av[i][j] != '-')
 			{
-				/* error */
+				printf("/* error */ 3\n");
 				return (0);
 			}
 			j++;
@@ -82,22 +84,25 @@ int	check_arg_num(int ac, char **av)
 	return (1);
 }
 
-int main (int ac, char **av)
+int	main (int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_var	var;
 
+	var_init(&var);
 	if (ac < 2)
 	{
-		/* error */
+		printf("error 4\n");
 		return (0);
 	}
 	if (!check_arg_num(ac, av))
 		return (0);
 	stack_a = init_stack_a(ac, av);
+	stack_b = NULL;
 	if (stack_a == NULL)
 	{
-		/* error */
+		printf("error 5\n");
 		return (0);
 	}
 	if (!check_doublon(stack_a, ac))
@@ -105,4 +110,5 @@ int main (int ac, char **av)
 		free(stack_a);
 		return (0);
 	}
+	sorting_start(stack_a, stack_b, &var);
 }

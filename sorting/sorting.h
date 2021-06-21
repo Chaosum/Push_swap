@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.h                                     :+:      :+:    :+:   */
+/*   sorting.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 20:20:20 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/15 20:05:50 by mservage         ###   ########.fr       */
+/*   Created: 2021/06/10 15:16:34 by mservage          #+#    #+#             */
+/*   Updated: 2021/06/10 19:16:13 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INSTRUCTIONS_H
-# define INSTRUCTIONS_H
+#ifndef SORTING_H
+# define SORTING_H
 # include "../push_swap.h"
 
-void	push(t_stack **stack_a, t_stack **stack_b, int a_b);
-void	r_rotate(t_stack *stack, int a_b);
-void	r_rotate_both(t_stack *stack_a, t_stack *stack_b);
-void	rotate(t_stack **stack, int a_b);
-void	rotate_both(t_stack **stack_a, t_stack **stack_b);
-void	swap(t_stack **stack, int a_b);
-void	ss(t_stack **stack_a, t_stack **stack_b);
+int	found_median(t_stack *stack, t_var *var);
+int	sorting_start(t_stack *a, t_stack *b, t_var *var);
 
 #endif
