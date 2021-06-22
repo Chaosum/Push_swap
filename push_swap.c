@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/21 16:27:56 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/22 18:01:53 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ int	main (int ac, char **av)
 		free(stack_a);
 		return (0);
 	}
-	sorting_start(stack_a, stack_b, &var);
+	sorting_stack_a(&stack_a, &stack_b, &var, 0);
 }
