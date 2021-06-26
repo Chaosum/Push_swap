@@ -6,90 +6,74 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 13:51:35 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/22 16:23:04 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/26 04:13:55 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	sort_block(t_stack **a, t_stack **b, t_stack **stack_size, t_var **var)
+int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 {
 	t_stack	*temp;
 
-	if ((*stack_size) == NULL)
-	{
-		while (*b)
-			push(a, b, 'b');
+	var_init(&var);
+	if (check_sort((*a), 'a', ft_stack_size(*a)) == 0 && *b == NULL)
 		return (0);
-	}
-	if ((*stack_size)->value == 1)
+	if (check_sort((*a), 'a', len) == 1)
 	{
-		push(a, b, 'b');
-		temp = *stack_size;
-		*stack_size = (*stack_size)->next;
-		free(temp);
-		sort_block(a, b, stack_size, var);
+		found_median(*a, &var, len);
+		while (var.i < len)
+		{
+			if ((*a)->value < var.median)
+				push(a, b, 'a');
+			else
+				rotate(a, 'a');
+			var.i++;
+		}
 	}
-	else if ((*stack_size)->value == 2)
-	{
-		push(a, b, 'b');
-		push(a, b, 'b');
-		if (check_sort(*a, 'a') == 1)
-			swap(a, 'a');
-		temp = (*stack_size);
-		*stack_size = (*stack_size)->next;
-		free(temp);
-		sort_block(a, b, stack_size, var);
-	}
-	else
-	{
-		temp = (*stack_size);
-		*stack_size = (*stack_size)->next;
-		free(temp);
-		sort_block(a, b, stack_size, var);
-	}
+	else if (check_sort(*a, 'a', len) == 1 && len == 2)
+		swap(a, 'a');
+	else if (check_sort(*a, 'a', len) == 1 && len == 3)
+		sort_three_elem_a(a, b, &var, 'a'); /* a opti */
+	else if (check_sort(*a, 'a', ft_stack_size(*a)) == 1 && len == 3)
+		sort_three_elem_a(a, b, &var, 'a');
+	sorting_stack_a(a, b, var, len - ft_stack_size(*a));
+	sorting_stack_b(a, b, var, var.i);
 	return (0);
 }
 
-int	sorting_start(t_stack *a, t_stack *b, t_var *var)
+int	sorting_stack_b(t_stack **a, t_stack **b, t_var var, int len)
 {
-	int		size;
-	t_stack	*stack_size;
+	int i;
 
-	stack_size = NULL;
-	if (check_sort(a, 'a') == 0)
-		return (0);
-	while (ft_stack_size(a) > 2)
+	i = 0;
+	var_init(&var);
+	if (check_sort(*b, 'b', len) == 0)
 	{
-		ft_lst_stack_add_front(&stack_size, ft_calloc(1, sizeof(t_stack)));
-		var->i = 0;
-		found_median(a, var);
-		size = ft_stack_size(a);
-		while (var->i < size)
+		while (i < len)
 		{
-			if (a->value < var->median)
-			{
-				push(&a, &b, 'a');
-				stack_size->value++;
-			}
-			else
-				rotate(&a, 'a');
-			var->i++;
+			push(a, b, 'b');
+			i++;
 		}
 	}
-	if (check_sort(a, 'a') == 1)
-		swap(&a, 'a');
-	sort_block(&a, &b, &stack_size, &var);
-	if (check_sort(a, 'a') == 1)
-		printf("c pa bon mais isoke\n");
-	while (a)
+	else if (len == 1)
+		push(a, b, 'b');
+	else if (check_sort(*b, 'b', len) == 1 && len == 2)
 	{
-		printf("%d|", a->value);
-		a = a->next;
+		swap(b, 'b');
+		push(a, b, 'b');
+		push(a, b, 'b');
 	}
-	printf("\n");
-	while (b)
+	else if (check_sort(*b, 'b', len) == 1 && len > 3)
 	{
-		printf("%d|", b->value);
-		b = b->next;
+		found_median(*b, &var, len);
+		while (var.i < len)
+		{
+			if ((*a)->value > var.median)
+				push(a, b, 'b');
+			else
+				rotate(b, 'b');
+			var.i++;
+		}
 	}
+	//sorting_stack_a(a, b, var, var.i);
 	return (0);
 }

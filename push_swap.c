@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/22 18:01:53 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/26 06:10:02 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_doublon(t_stack *stack_a, int ac)
 		{
 			if (value == temp->value && i != current_check)
 			{
-				printf("/* error */ 2\n");
+				printf("/* error */ 2 %d\n", temp->value);
 				return (0);
 			}
 			temp = temp->next;
@@ -110,5 +110,6 @@ int	main (int ac, char **av)
 		free(stack_a);
 		return (0);
 	}
-	sorting_stack_a(&stack_a, &stack_b, &var, 0);
+	sorting_stack_a(&stack_a, &stack_b, var, ft_stack_size(stack_a));
+	print_stacks(stack_a, stack_b);
 }
