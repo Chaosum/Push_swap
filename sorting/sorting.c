@@ -6,11 +6,47 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:17 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/26 06:10:23 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:33:21 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorting.h"
+
+int	sort_three_elem_only_a(t_stack **a)
+{
+	int	A;
+	int	B;
+	int	C;
+
+	A = (*a)->value;
+	B = (*a)->next->value;
+	C = (*a)->next->next->value;
+	if (A > B && B > C)
+	{
+		rotate(a, 'a');
+		swap(a, 'a');
+	}
+	else if (A < B && A < C && B > C)
+	{
+		rotate(a, 'a');
+		swap(a, 'a');
+		r_rotate(a, 'a');
+	}
+	else if (A > B && A < C && B < C)
+	{
+		swap(a, 'a');
+	}
+	else if (A < B && A > C && B > C)
+	{
+		r_rotate(a, 'a');
+	}
+	else if (A > B && A > C && C > B)
+	{
+		r_rotate(a, 'a');
+		r_rotate(a, 'a');
+	}
+	return (0);
+}
 
 int	sort_three_elem_b(t_stack **a, t_stack **b)
 {
@@ -130,14 +166,14 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 				push(a, b, 'a');
 				var.j++;
 			}
-			else
+			else if (check_next(a, var.median) == 1)
 			{
 				rotate(a, 'a');
 				var.min++;
 			}
 			var.i++;
 		}
-		while (var.min > 0)
+		while (var.min > 0 && var.b == 1)
 		{
 			r_rotate(a, 'a');
 			var.min--;
@@ -203,6 +239,7 @@ int	sorting_stack_b(t_stack **a, t_stack **b, t_var var, int len)
 			var.max--;
 		}
 	}
+	var.b = 1;
 	sorting_stack_a(a, b, var, var.j);
 	sorting_stack_b(a, b, var, len - var.j);
 	return (0);

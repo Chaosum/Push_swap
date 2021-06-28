@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 13:51:35 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/26 04:13:55 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:48:52 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 	else if (check_sort(*a, 'a', len) == 1 && len == 2)
 		swap(a, 'a');
 	else if (check_sort(*a, 'a', len) == 1 && len == 3)
-		sort_three_elem_a(a, b, &var, 'a'); /* a opti */
+		sort_three_elem_a(a, b, &var, 'a');
 	else if (check_sort(*a, 'a', ft_stack_size(*a)) == 1 && len == 3)
 		sort_three_elem_a(a, b, &var, 'a');
 	sorting_stack_a(a, b, var, len - ft_stack_size(*a));

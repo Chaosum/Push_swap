@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 17:16:49 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/21 11:01:52 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/28 16:46:18 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	push(t_stack **stack_a, t_stack **stack_b, int a_b)
 			temp->next = *stack_b;
 			*stack_b = temp;
 		}
-		write(1, "pa\n", 3);
+		write(1, "pb\n", 3);
 	}
 	else if (a_b == 'b')
 	{
@@ -36,6 +36,6 @@ void	push(t_stack **stack_a, t_stack **stack_b, int a_b)
 			temp->next = *stack_a;
 			*stack_a = temp;
 		}
-		write(1, "pb\n", 3);
+		write(1, "pa\n", 3);
 	}
 }

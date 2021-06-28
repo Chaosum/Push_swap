@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:03 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/26 05:59:36 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:33:30 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,13 @@ int	found_median(t_stack *stack, t_var *var, int len)
 	}
 	return (-1);
 }
+
+// int	check_next(t_stack **a, int med)
+// {
+// 	t_stack *temp;
+	
+// 	temp = *a;
+// }
 
 void	print_stacks(t_stack *a, t_stack *b)
 {

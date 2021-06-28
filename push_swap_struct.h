@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 20:25:48 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/10 15:26:20 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:30:03 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_var
 	int	median;
 	int	max;
 	int	min;
+	int	b;
 }				t_var;
 
 #endif
