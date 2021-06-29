@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:03 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/28 17:33:30 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:18:35 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	check_closest(t_stack *stack, int median, int a_b)
+{
+	t_stack	*temp;
+	int		size;
+	int		next;
+
+	temp = stack;
+	size = ft_stack_size(stack);
+	next = 0;
+	while (temp)
+	{
+		if (temp->value < median && a_b == 'a')
+			break;
+		if (temp->value >= median && a_b == 'b')
+			break;
+		next++;
+		temp = temp->next;
+	}
+	if ((next * 2) - 1 > size)
+		return (1);
+	return (0);
+}
 
 int	check_sort(t_stack *stack, int a_b, int len)
 {
@@ -96,7 +119,7 @@ void	ft_lst_stack_add_back(t_stack **alst, t_stack *new)
 	return ;
 }
 
-int	found_median(t_stack *stack, t_var *var, int len)
+int	found_median(t_stack *stack, t_var *var, int len, int a_b)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
@@ -120,8 +143,8 @@ int	found_median(t_stack *stack, t_var *var, int len)
 			j++;
 		}
 		if (var->min == var->max
-			|| (var->min == var->max + 1 && !(len % 2))
-			|| (var->min + 1 == var->max && !(len % 2)))
+			|| (var->min + 1 == var->max && !(len % 2))
+			|| (var->min == var->max + 1 && !(len % 2)))
 			return (var->median);
 		var->min = 0;
 		var->max = 0;

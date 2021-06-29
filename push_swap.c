@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/28 17:04:16 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/29 13:59:59 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main (int ac, char **av)
 	t_var	var;
 
 	var_init(&var);
+	var.b = 0;
 	if (ac < 2)
 	{
 		printf("error 4\n");
@@ -115,8 +116,8 @@ int	main (int ac, char **av)
 		sort_three_elem_only_a(&stack_a);
 	else
 		sorting_stack_a(&stack_a, &stack_b, var, ft_stack_size(stack_a));
-	// print_stacks(stack_a, stack_b);
-	// printf("%d\n", check_sort(stack_a, 'a', ft_stack_size(stack_a)));
+	//print_stacks(stack_a, stack_b);
+	//printf("%d\n", check_sort(stack_a, 'a', ft_stack_size(stack_a)));
 	while (stack_a)
 	{
 		temp = stack_a;

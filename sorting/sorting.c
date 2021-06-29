@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:17 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/28 17:33:21 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:24:46 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,11 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 			swap(a, 'a');
 		return (0);
 	}
+	else if (len == 3 && ft_stack_size(*a) == 3)
+	{
+		sort_three_elem_only_a(a);
+		return (0);
+	}
 	else if (len == 3)
 	{
 		if (check_sort(*a, 'a', len) == 1)
@@ -157,16 +162,18 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 	}
 	else if (len > 3 && check_sort(*a, 'a', len) == 1)
 	{
-		found_median(*a, &var, len);
+		found_median(*a, &var, len, 'a');
 		var.min = 0;
-		while (var.i < len)
+		while (var.i < len && var.j <= (len / 2) - 1)
 		{
 			if ((*a)->value < var.median)
 			{
 				push(a, b, 'a');
 				var.j++;
 			}
-			else if (check_next(a, var.median) == 1)
+			else if (check_closest(*a, var.median, 'a') == 1 && var.b == 0)
+				r_rotate(a, 'a');
+			else
 			{
 				rotate(a, 'a');
 				var.min++;
@@ -217,9 +224,9 @@ int	sorting_stack_b(t_stack **a, t_stack **b, t_var var, int len)
 	}
 	else if (len > 3)
 	{
-		found_median(*b, &var, len);
+		found_median(*b, &var, len, 'b');
 		var.max = 0;
-		while (var.i < len)
+		while (var.i < len && var.j <= (len / 2) - 1)
 		{
 			if ((*b)->value > var.median)
 			{

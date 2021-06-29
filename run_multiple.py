@@ -4,7 +4,7 @@ import statistics
 import os
 import shutil
 
-n_runs = 1000
+n_runs = 100
 n_nums = 500
 range_min = 0
 range_max = 500

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:24 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/26 03:59:10 by mservage         ###   ########.fr       */
+/*   Updated: 2021/06/29 13:54:05 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_lst_stack_add_front(t_stack **alst, t_stack *new);
 int		ft_stack_size(t_stack *stack);
 void	var_init(t_var *var);
 void	ft_lst_stack_add_back(t_stack **alst, t_stack *new);
-int		found_median(t_stack *stack, t_var *var, int len);
+int		found_median(t_stack *stack, t_var *var, int len, int a_b);
 void	print_stacks(t_stack *a, t_stack *b);
+int		check_closest(t_stack *stack, int median, int a_b);
 
 #endif
