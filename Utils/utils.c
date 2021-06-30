@@ -6,11 +6,37 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:03 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/29 14:18:35 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:19:25 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	free_stacks(t_stack *a, t_stack *b, const char *s)
+{
+	int		i;
+	t_stack	*temp;
+
+	i = 0;
+	while (a)
+	{
+		temp = a;
+		a = a->next;
+		free(temp);
+	}
+	while (b)
+	{
+		temp = b;
+		b = b->next;
+		free(temp);
+	}
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], 1);
+		i++;
+	}
+	return (0);
+}
 
 int	check_closest(t_stack *stack, int median, int a_b)
 {
@@ -24,9 +50,9 @@ int	check_closest(t_stack *stack, int median, int a_b)
 	while (temp)
 	{
 		if (temp->value < median && a_b == 'a')
-			break;
+			break ;
 		if (temp->value >= median && a_b == 'b')
-			break;
+			break ;
 		next++;
 		temp = temp->next;
 	}
@@ -38,28 +64,24 @@ int	check_closest(t_stack *stack, int median, int a_b)
 int	check_sort(t_stack *stack, int a_b, int len)
 {
 	t_stack	*temp;
-	int		croiss;
-	int		decroiss;
-	int		i;
+	t_var	var;
 
-	i = 0;
-	croiss = 0;
-	decroiss = 0;
+	var_init(&var);
 	temp = stack;
 	if (ft_stack_size(stack) > 1)
 	{
-		while (temp->next && i < len - 1)
+		while (temp->next && var.i < len - 1)
 		{
 			if (temp->value < temp->next->value)
-				croiss++;
+				var.min++;
 			else if (temp->value > temp->next->value)
-				decroiss++;
+				var.max++;
 			temp = temp->next;
-			i++;
+			var.i++;
 		}
-		if (decroiss && a_b == 'a')
+		if (var.max && a_b == 'a')
 			return (1);
-		else if (croiss && a_b == 'b')
+		else if (var.min && a_b == 'b')
 			return (1);
 	}
 	return (0);
@@ -153,13 +175,6 @@ int	found_median(t_stack *stack, t_var *var, int len, int a_b)
 	}
 	return (-1);
 }
-
-// int	check_next(t_stack **a, int med)
-// {
-// 	t_stack *temp;
-	
-// 	temp = *a;
-// }
 
 void	print_stacks(t_stack *a, t_stack *b)
 {

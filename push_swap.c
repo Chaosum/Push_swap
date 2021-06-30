@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/29 13:59:59 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:20:15 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_stack	*init_stack_a(int ac, char **av)
 	while (i < ac)
 	{
 		temp = ft_calloc(1, sizeof(t_stack));
+		if (temp == NULL)
+			return (NULL);
 		temp->value = ft_atoi(av[i]);
 		ft_lst_stack_add_back(&stack_a, temp);
 		i++;
@@ -48,10 +50,7 @@ int	check_doublon(t_stack *stack_a, int ac)
 		while (i < ac)
 		{
 			if (value == temp->value && i != current_check)
-			{
-				printf("/* error */ 2 %d\n", temp->value);
 				return (0);
-			}
 			temp = temp->next;
 			i++;
 		}
@@ -73,10 +72,7 @@ int	check_arg_num(int ac, char **av)
 		while (av[i][j])
 		{
 			if (!ft_isdigit((int)av[i][j]) && av[i][j] != '-')
-			{
-				printf("/* error */ 3\n");
 				return (0);
-			}
 			j++;
 		}
 		i++;
@@ -88,46 +84,23 @@ int	main (int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack *temp;
 	t_var	var;
 
 	var_init(&var);
 	var.b = 0;
 	if (ac < 2)
-	{
-		printf("error 4\n");
-		return (0);
-	}
+		return (free_stacks(NULL, NULL, "Error\nNo args.."));
 	if (!check_arg_num(ac, av))
-		return (0);
+		return (free_stacks(NULL, NULL, "Error\nWrong args."));
 	stack_a = init_stack_a(ac, av);
 	stack_b = NULL;
 	if (stack_a == NULL)
-	{
-		printf("error 5\n");
-		return (0);
-	}
+		return (free_stacks(stack_a, stack_b, "Error\nMalloc error."));
 	if (!check_doublon(stack_a, ac))
-	{
-		free(stack_a);
-		return (0);
-	}
+		return (free_stacks(stack_a, stack_b, "Error\nDuplicated values."));
 	if (ft_stack_size(stack_a) == 3)
 		sort_three_elem_only_a(&stack_a);
 	else
 		sorting_stack_a(&stack_a, &stack_b, var, ft_stack_size(stack_a));
-	//print_stacks(stack_a, stack_b);
-	//printf("%d\n", check_sort(stack_a, 'a', ft_stack_size(stack_a)));
-	while (stack_a)
-	{
-		temp = stack_a;
-		stack_a = stack_a->next;
-		free(temp);
-	}
-	while (stack_b)
-	{
-		temp = stack_b;
-		stack_b = stack_b->next;
-		free(temp);
-	}
+	free_stacks(stack_a, stack_b, "");
 }

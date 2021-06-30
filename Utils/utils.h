@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:24 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/29 13:54:05 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:13:38 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../push_swap.h"
 
+int		free_stacks(t_stack *a, t_stack *b, const char *s);
 int		check_sort(t_stack *stack, int a_b, int len);
 void	ft_lst_stack_add_front(t_stack **alst, t_stack *new);
 int		ft_stack_size(t_stack *stack);
