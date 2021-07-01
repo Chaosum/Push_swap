@@ -6,9 +6,9 @@ FOLDER_INSTRUCT		= instructions
 
 SRCS				= push_swap.c
 
-SRCS_UTILS			= ${addprefix ${FOLDER_UTILS}/,utils.c}
+SRCS_UTILS			= ${addprefix ${FOLDER_UTILS}/,utils.c utils_bis.c}
 
-SRCS_SORTING		= ${addprefix ${FOLDER_SORTING}/,sorting.c}
+SRCS_SORTING		= ${addprefix ${FOLDER_SORTING}/,sorting_a.c sorting_b.c}
 
 SRCS_INSTRUCT		= ${addprefix ${FOLDER_INSTRUCT}/,push.c swap.c rotate.c reverse_rotate.c}
 

@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/30 15:20:15 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:38:23 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int	check_arg_num(int ac, char **av)
 	return (1);
 }
 
+	// print_stacks(stack_a, stack_b);
+	// ft_putnbr_fd(check_sort(stack_a, 'a', ft_stack_size(stack_a)), 1);
+
 int	main (int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -89,7 +92,7 @@ int	main (int ac, char **av)
 	var_init(&var);
 	var.b = 0;
 	if (ac < 2)
-		return (free_stacks(NULL, NULL, "Error\nNo args.."));
+		return (free_stacks(NULL, NULL, "Error\nNo args."));
 	if (!check_arg_num(ac, av))
 		return (free_stacks(NULL, NULL, "Error\nWrong args."));
 	stack_a = init_stack_a(ac, av);
@@ -99,7 +102,8 @@ int	main (int ac, char **av)
 	if (!check_doublon(stack_a, ac))
 		return (free_stacks(stack_a, stack_b, "Error\nDuplicated values."));
 	if (ft_stack_size(stack_a) == 3)
-		sort_three_elem_only_a(&stack_a);
+		sort_three_elem_only_a(&stack_a, stack_a->value,
+			stack_a->next->value, stack_a->next->next->value);
 	else
 		sorting_stack_a(&stack_a, &stack_b, var, ft_stack_size(stack_a));
 	free_stacks(stack_a, stack_b, "");
