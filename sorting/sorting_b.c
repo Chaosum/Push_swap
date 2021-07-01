@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:17 by mservage          #+#    #+#             */
-/*   Updated: 2021/07/01 12:55:27 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:56:20 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	sort_three_elem_b(t_stack **a, t_stack **b)
 
 int	sorting_stack_b_bis(t_stack **a, t_stack **b, t_var *var, int len)
 {
-	found_median(*b, var, len, 'b');
+	found_median(*b, var, len);
 	var->max = 0;
 	while (var->i < len && var->j <= (len / 2) - 1)
 	{
@@ -89,6 +89,7 @@ int	sorting_stack_b_bis(t_stack **a, t_stack **b, t_var *var, int len)
 		r_rotate(b, 'b');
 		var->max--;
 	}
+	return (0);
 }
 
 int	sorting_stack_b(t_stack **a, t_stack **b, t_var var, int len)

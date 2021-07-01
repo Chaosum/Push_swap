@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 12:08:11 by matthieu          #+#    #+#             */
-/*   Updated: 2021/07/01 12:45:47 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:56:03 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	sort_three_elem_a(t_stack **a, t_stack **b)
 
 int	sorting_stack_a_bis(t_stack **a, t_stack **b, t_var *var, int len)
 {
-	found_median(*a, var, len, 'a');
+	found_median(*a, var, len);
 	var->min = 0;
 	while (var->i < len && var->j <= (len / 2) - 1)
 	{
@@ -116,6 +116,7 @@ int	sorting_stack_a_bis(t_stack **a, t_stack **b, t_var *var, int len)
 		r_rotate(a, 'a');
 		var->min--;
 	}
+	return (0);
 }
 
 int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
@@ -123,7 +124,7 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 	var_init(&var);
 	if ((check_sort(*a, 'a', ft_stack_size(*a)) == 0 && *b == NULL) || len == 0)
 		return (0);
-	else if (len == 1 || check_sort(*a, 'a', len) == 0 && *b)
+	else if (len == 1 || (check_sort(*a, 'a', len) == 0 && *b))
 		return (0);
 	else if (len == 2)
 	{

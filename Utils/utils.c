@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:03 by mservage          #+#    #+#             */
-/*   Updated: 2021/07/01 13:26:38 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:54:11 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	found_median_bis(t_var *var, t_stack **temp2, int *j)
 	*j = *j + 1;
 }
 
-int	found_median(t_stack *stack, t_var *var, int len, int a_b)
+int	found_median(t_stack *stack, t_var *var, int len)
 {
 	t_stack	*temp;
 	t_stack	*temp2;

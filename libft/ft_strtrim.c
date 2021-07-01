@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjeannot <rjeannot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 16:23:26 by mservage          #+#    #+#             */
-/*   Updated: 2021/05/11 15:06:14 by rjeannot         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:53:48 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		i[3];
 	char	*temp;
 
+	temp = NULL;
 	i[1] = 0;
 	i[2] = 0;
 	if (!(s1 && set))
@@ -78,11 +79,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[i[1]])
 		i[1]++;
 	i[1] = ft_risinside(s1 + i[0], set);
-	temp = malloc(sizeof(char) * (i[1] + 2));
+	temp = ft_calloc((i[1] + 2), sizeof(char));
 	if (temp == NULL)
 		return (NULL);
 	while (i[2] <= i[1])
 		temp[i[2]++] = s1[i[0]++];
-	temp[i[2]] = 0;
 	return (temp);
 }
