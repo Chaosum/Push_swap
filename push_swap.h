@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:11:58 by mservage          #+#    #+#             */
-/*   Updated: 2021/06/10 19:21:47 by mservage         ###   ########.fr       */
+/*   Updated: 2021/07/27 15:43:02 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@
 t_stack	*init_stack_a(int ac, char **av);
 int		check_doublon(t_stack *stack_a, int ac);
 int		check_arg_num(int ac, char **av);
-int		main (int ac, char **av);
+int		main(int ac, char **av);
 
 #endif

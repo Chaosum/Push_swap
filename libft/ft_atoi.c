@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjeannot <rjeannot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 14:23:46 by mservage          #+#    #+#             */
-/*   Updated: 2021/04/29 14:44:53 by rjeannot         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:15:48 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	ft_atoi(const char *str)
 	if ((a > 2147483648) && (neg > 0))
 		return (-1);
 	else if ((a > 2147483648) && (neg < 0))
-		return (0);
+		return (-1);
 	return (a * neg);
 }

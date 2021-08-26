@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:10:29 by mservage          #+#    #+#             */
-/*   Updated: 2021/07/01 13:38:23 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:37:18 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,17 @@ t_stack	*init_stack_a(int ac, char **av)
 	{
 		temp = ft_calloc(1, sizeof(t_stack));
 		if (temp == NULL)
+		{
+			free_stacks(stack_a, NULL, "Error\nMalloc error.");
 			return (NULL);
+		}
 		temp->value = ft_atoi(av[i]);
+		if (temp->value == -1 && ft_strncmp(av[i], "-1", 3))
+		{
+			free(temp);
+			free_stacks(stack_a, NULL, "Error\nWrong arg value.");
+			return (NULL);
+		}
 		ft_lst_stack_add_back(&stack_a, temp);
 		i++;
 	}
@@ -69,9 +78,13 @@ int	check_arg_num(int ac, char **av)
 	while (i < ac)
 	{
 		j = 0;
+		if (av[i][0] == 0)
+			return (0);
+		if (av[i][j] == '-' && ft_strncmp(av[i], "-", 2))
+			j++;
 		while (av[i][j])
 		{
-			if (!ft_isdigit((int)av[i][j]) && av[i][j] != '-')
+			if (!ft_isdigit((int)av[i][j]))
 				return (0);
 			j++;
 		}
@@ -80,10 +93,7 @@ int	check_arg_num(int ac, char **av)
 	return (1);
 }
 
-	// print_stacks(stack_a, stack_b);
-	// ft_putnbr_fd(check_sort(stack_a, 'a', ft_stack_size(stack_a)), 1);
-
-int	main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -92,13 +102,13 @@ int	main (int ac, char **av)
 	var_init(&var);
 	var.b = 0;
 	if (ac < 2)
-		return (free_stacks(NULL, NULL, "Error\nNo args."));
+		return (0);
 	if (!check_arg_num(ac, av))
 		return (free_stacks(NULL, NULL, "Error\nWrong args."));
 	stack_a = init_stack_a(ac, av);
 	stack_b = NULL;
 	if (stack_a == NULL)
-		return (free_stacks(stack_a, stack_b, "Error\nMalloc error."));
+		return (1);
 	if (!check_doublon(stack_a, ac))
 		return (free_stacks(stack_a, stack_b, "Error\nDuplicated values."));
 	if (ft_stack_size(stack_a) == 3)
@@ -107,4 +117,5 @@ int	main (int ac, char **av)
 	else
 		sorting_stack_a(&stack_a, &stack_b, var, ft_stack_size(stack_a));
 	free_stacks(stack_a, stack_b, "");
+	return (0);
 }

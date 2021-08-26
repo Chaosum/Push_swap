@@ -6,7 +6,7 @@ FOLDER_INSTRUCT		= instructions
 
 SRCS				= push_swap.c
 
-SRCS_UTILS			= ${addprefix ${FOLDER_UTILS}/,utils.c utils_bis.c}
+SRCS_UTILS			= ${addprefix ${FOLDER_UTILS}/,utils.c utils_bis.c utils_bis_re.c}
 
 SRCS_SORTING		= ${addprefix ${FOLDER_SORTING}/,sorting_a.c sorting_b.c}
 
@@ -20,9 +20,11 @@ NAME				= push_swap
 
 CC					= gcc
 
-CFLAGS				=  -g3 -fsanitize=address -Wall -Wextra -Werror
+CFLAGS				=  -Wall -Wextra -Werror # -g3 -fsanitize=address 
 
 all:		MAKELIBFT ${NAME}
+
+bonus:		all
 
 %.o:		%.c
 			${CC} ${CFLAGS} -o $@ -c $<
@@ -42,7 +44,7 @@ clean:
 			@echo files cleaned !
 
 fclean:		clean
-			@rm -f ${NAME}
+			@rm -rf ${NAME}
 			@make fclean -C ./libft
 
 re:			fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 08:03:24 by mservage          #+#    #+#             */
-/*   Updated: 2021/07/01 13:55:01 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:18:19 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "../push_swap.h"
 
-/* utils_bis.c */
+/* utils_bis_re.c */
+void	reverse_the_rotate__on_a(t_var *var, t_stack **a, int i);
+void	reverse_the_rotate__on_b(t_var *var, t_stack **b, int i);
 
+/* utils_bis.c */
 void	var_init(t_var *var);
 void	ft_lst_stack_add_front(t_stack **alst, t_stack *new);
 void	print_stacks(t_stack *a, t_stack *b);

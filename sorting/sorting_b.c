@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 15:16:17 by mservage          #+#    #+#             */
-/*   Updated: 2021/07/01 13:56:20 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:19:35 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,7 @@ int	sorting_stack_b_bis(t_stack **a, t_stack **b, t_var *var, int len)
 		}
 		var->i++;
 	}
-	while (var->max > 0)
-	{
-		r_rotate(b, 'b');
-		var->max--;
-	}
+	reverse_the_rotate__on_b(var, b, -1);
 	return (0);
 }
 

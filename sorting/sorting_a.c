@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 12:08:11 by matthieu          #+#    #+#             */
-/*   Updated: 2021/07/01 13:56:03 by matthieu         ###   ########.fr       */
+/*   Updated: 2021/07/28 20:19:30 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,25 +111,20 @@ int	sorting_stack_a_bis(t_stack **a, t_stack **b, t_var *var, int len)
 		}
 		var->i++;
 	}
-	while (var->min > 0 && var->b == 1)
-	{
-		r_rotate(a, 'a');
-		var->min--;
-	}
+	reverse_the_rotate__on_a(var, a, -1);
 	return (0);
 }
 
 int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 {
 	var_init(&var);
-	if ((check_sort(*a, 'a', ft_stack_size(*a)) == 0 && *b == NULL) || len == 0)
+	if ((check_sort(*a, 'a', ft_stack_size(*a)) == 0) || len == 0)
 		return (0);
 	else if (len == 1 || (check_sort(*a, 'a', len) == 0 && *b))
 		return (0);
 	else if (len == 2)
 	{
-		if (check_sort(*a, 'a', len) == 1)
-			swap(a, 'a');
+		swap(a, 'a');
 		return (0);
 	}
 	else if (len == 3 && ft_stack_size(*a) == 3)
@@ -137,11 +132,10 @@ int	sorting_stack_a(t_stack **a, t_stack **b, t_var var, int len)
 				(*a)->next->value, (*a)->next->next->value));
 	else if (len == 3)
 	{
-		if (check_sort(*a, 'a', len) == 1)
-			sort_three_elem_a(a, b);
+		sort_three_elem_a(a, b);
 		return (0);
 	}
-	else if (len > 3 && check_sort(*a, 'a', len) == 1)
+	else if (len > 3)
 		sorting_stack_a_bis(a, b, &var, len);
 	sorting_stack_a(a, b, var, len - var.j);
 	sorting_stack_b(a, b, var, var.j);
