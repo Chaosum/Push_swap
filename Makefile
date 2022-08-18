@@ -26,15 +26,12 @@ all:		MAKELIBFT ${NAME}
 
 bonus:		all
 
-%.o:		%.c
+%.o:		%.c ${INCLUDES}
 			${CC} ${CFLAGS} -o $@ -c $<
 
 ${NAME}:	${OBJS}
 				gcc ${CFLAGS} -o ${NAME} ${OBJS} ./libft/libft.a
 				@echo compilation complete !
-			
-
-${OBJS}:	${INCLUDES}
 
 MAKELIBFT:
 			@make -C ./libft

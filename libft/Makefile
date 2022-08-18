@@ -10,14 +10,12 @@ CFLAGS		= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 all:        ${NAME}
 
-%.o:        %.c
+%.o:        %.c libft.h get_next_line.h
 			@${CC} ${CFLAGS}  -o $@ -c $<
 
 ${NAME}:	${OBJS}
 			@ar rcs ${NAME} $?
 			@echo libft compiled
-	
-${OBJS}:	libft.h get_next_line.h
 
 clean:
 			@rm -f *.o
